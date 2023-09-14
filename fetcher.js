@@ -18,17 +18,16 @@ const request = require('request');
 request.get(URL, function (error, response, data) {
   //Print error ID and exit if error encountered
   if (error) {
-    console.error("Error: " + error);
+    console.error(error);
     process.exit(2);
   }
 
   //Write the data we recieved to a file
   fs.writeFile(outFile, data, err => {
-  if (err) {
-    console.error("Cannot write file: " + err);
-    process.exit(3);
-  }
-  // file written successfully
+    if (err) {
+      console.error("Cannot write file: " + err);
+      process.exit(3);
+    }
   });
 
   //Print statistics after writing the file.
